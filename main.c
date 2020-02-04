@@ -2,20 +2,18 @@
 
 int main()
 {
-    Imagem i;
+    Imagem imgI;
     char nome[11];
 
     printf("Diga o nome do arquivo:\n");
     scanf(" %[^\n]", nome);
 
-    i = abrir(nome);
+    imgI = abrir(nome);
 
     Imagem img;
 
-    img = erosao(i, oeste);
-    img = dilatacao(img, oeste);
-    img = dilatacao(img, norte);
-    img = erosao(img, sul);
+    img = abertura(imgI);
+    img = fechamento(imgI);
 
     salvarPBM(img);
 

@@ -252,3 +252,23 @@ Imagem erosao(Imagem imgI, char tipo)
 
     return img;
 }
+
+Imagem abertura(Imagem imgI)
+{
+    Imagem img;
+
+    img = erosao(imgI, oeste);
+    img = dilatacao(img, oeste);
+
+    return img;
+}
+
+Imagem fechamento(Imagem imgI)
+{
+    Imagem img;
+
+    img = dilatacao(imgI, norte);
+    img = erosao(img, sul);
+
+    return img;
+}
