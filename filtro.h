@@ -17,186 +17,74 @@
 typedef struct mascara
 {
     char tipo;
-    Coluna * coluna;
-    int centroX;
-    int centroY;
+    Linha * linha;
 }Mascara;
 
-void iniciarMask(Mascara * mask, char tipo, Coluna * coluna, int centroX, int centroY)
+void iniciarMask(Mascara * mask, char tipo, Linha * linha)
 {
     mask->tipo = tipo;
-    mask->coluna = coluna;
-    mask->centroX = centroX;
-    mask->centroY = centroY;
+    mask->linha = linha;
 }
 
 Mascara construirMask(char tipo)
 {
     Mascara mask;
-    Coluna * colunaMask;
-    colunaMask = (Coluna *) malloc(tamMask * sizeof(Coluna)); 
-    colunaMask[0].linha = (int *) malloc(tamMask*(sizeof(int)));
-    colunaMask[1].linha = (int *) malloc(tamMask*(sizeof(int)));
-    colunaMask[2].linha = (int *) malloc(tamMask*(sizeof(int)));
+    Linha * linha;
+    linha = (Linha *) malloc(tamMask * sizeof(linha));
+    linha[0].coluna = (int *) calloc(tamMask, sizeof(int));
+    linha[1].coluna = (int *) calloc(tamMask, sizeof(int));
+    linha[2].coluna = (int *) calloc(tamMask, sizeof(int));
 
-    iniciarMask(&mask, tipo, colunaMask, tamMask/2, tamMask/2);
+    iniciarMask(&mask, tipo, linha);
 
         switch (tipo)
         {
-        case horizontal:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 0;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 1;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 1;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 0;
-            mask.coluna[2].linha[2] = 0;
-        break;
-
         case vertical:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 1;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 0;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 0;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 1;
-            mask.coluna[2].linha[2] = 0;
+            mask.linha[0].coluna[1] = 1;
+            mask.linha[2].coluna[1] = 1;
         break;
 
-        case noroeste:
-            mask.coluna[0].linha[0] = 1;
-            mask.coluna[0].linha[1] = 0;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 0;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 0;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 0;
-            mask.coluna[2].linha[2] = 0;
-            break;
-
-        case nordeste:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 0;
-            mask.coluna[0].linha[2] = 1;
-            mask.coluna[1].linha[0] = 0;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 0;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 0;
-            mask.coluna[2].linha[2] = 0;
-            break;
-
-        case sudoeste:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 0;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 0;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 0;
-            mask.coluna[2].linha[0] = 1;
-            mask.coluna[2].linha[1] = 0;
-            mask.coluna[2].linha[2] = 0;
-            break;
-
-        case sudeste:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 0;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 0;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 0;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 0;
-            mask.coluna[2].linha[2] = 1;
-            break;
+        case horizontal:
+            mask.linha[1].coluna[0] = 1;
+            mask.linha[1].coluna[2] = 1;
+        break;
         
         case leste:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 0;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 0;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 1;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 0;
-            mask.coluna[2].linha[2] = 0;
+            mask.linha[1].coluna[1] = 1;
+            mask.linha[1].coluna[2] = 1;
             break;
 
         case oeste:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 0;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 1;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 0;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 0;
-            mask.coluna[2].linha[2] = 0;
-            break;
-
-        case cruz:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 1;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 1;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 1;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 1;
-            mask.coluna[2].linha[2] = 0;
+            mask.linha[1].coluna[0] = 1;
+            mask.linha[1].coluna[1] = 1;
             break;
 
         case norte:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 1;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 0;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 0;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 0;
-            mask.coluna[2].linha[2] = 0;
+            mask.linha[0].coluna[1] = 1;
+            mask.linha[1].coluna[1] = 1;
             break;
 
         case sul:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 0;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 0;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 0;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 1;
-            mask.coluna[2].linha[2] = 0;
+            mask.linha[1].coluna[1] = 1;
+            mask.linha[2].coluna[1] = 1;
+            break;
+
+        case cruz:
+            mask.linha[0].coluna[1] = 1;
+            mask.linha[2].coluna[1] = 1;
+            mask.linha[1].coluna[0] = 1;
+            mask.linha[1].coluna[2] = 1;
             break;
 
         case diagonal:
-            mask.coluna[0].linha[0] = 1;
-            mask.coluna[0].linha[1] = 0;
-            mask.coluna[0].linha[2] = 1;
-            mask.coluna[1].linha[0] = 0;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 0;
-            mask.coluna[2].linha[0] = 1;
-            mask.coluna[2].linha[1] = 0;
-            mask.coluna[2].linha[2] = 1;
+            mask.linha[0].coluna[0] = 1;
+            mask.linha[0].coluna[2] = 1;
+            mask.linha[2].coluna[0] = 1;
+            mask.linha[2].coluna[2] = 1;
             break;
 
         default:
-            mask.coluna[0].linha[0] = 0;
-            mask.coluna[0].linha[1] = 0;
-            mask.coluna[0].linha[2] = 0;
-            mask.coluna[1].linha[0] = 0;
-            mask.coluna[1].linha[1] = 1;
-            mask.coluna[1].linha[2] = 0;
-            mask.coluna[2].linha[0] = 0;
-            mask.coluna[2].linha[1] = 0;
-            mask.coluna[2].linha[2] = 0;
+            mask.linha[1].coluna[1] = 1;
             break;
         }
 
@@ -206,12 +94,10 @@ Mascara construirMask(char tipo)
 void apagarMask(Mascara * mask)
 {
     mask->tipo = '\0';
-    mask->centroX = 0;
-    mask->centroY = 0;
-    free(mask->coluna[0].linha);
-    free(mask->coluna[1].linha);
-    free(mask->coluna[2].linha);
-    free(mask->coluna);
+    free(mask->linha[0].coluna);
+    free(mask->linha[1].coluna);
+    free(mask->linha[2].coluna);
+    free(mask->linha);
 }
 
 Mascara espelharMask(char tipo)
@@ -253,22 +139,6 @@ Mascara espelharMask(char tipo)
         mask = construirMask(diagonal);
         break;
 
-    case nordeste:
-        mask = construirMask(sudoeste);
-        break;
-    
-    case sudoeste:
-        mask = construirMask(nordeste);
-        break;
-
-    case noroeste:
-        mask = construirMask(sudeste);
-        break;
-
-    case sudeste:
-        mask = construirMask(noroeste);
-        break;
-
     default:
         mask = construirMask(ponto);
         break;
@@ -277,20 +147,20 @@ Mascara espelharMask(char tipo)
     return mask;
 }
 
-void dilatar(Coluna * coluna, Mascara tipo, int posicaoX, int posicaoY)
+void dilatar(Linha * linha, Mascara tipo, int posicaoX, int posicaoY)
 {
     int i, j;
     for (i = 0; i < tamMask; i++)
     {
         for(j = 0; j < tamMask; j++)
         {
-            if(tipo.coluna[i].linha[j] == 1)
-            coluna[posicaoX + i].linha[posicaoY + j] = 1;
+            if(tipo.linha[i].coluna[j] == 1)
+            linha[posicaoX + i].coluna[posicaoY + j] = 1;
         }
     }
 }
 
-void maskDil(Mascara tipo, Coluna * original, Coluna * quadro, int posicaoX, int posicaoY)
+void maskDil(Mascara tipo, Linha * original, Linha * vazia, int posicaoX, int posicaoY)
 {
     int i, j;
 
@@ -298,9 +168,9 @@ void maskDil(Mascara tipo, Coluna * original, Coluna * quadro, int posicaoX, int
     {
         for (j = 0; j < tamMask; j++)
         {
-            if(original[posicaoX + i].linha[posicaoY + j] + tipo.coluna[i].linha[j] > 1) 
+            if(original[posicaoX + i].coluna[posicaoY + j] + tipo.linha[i].coluna[j] > 1) 
             {
-                dilatar(quadro, tipo, posicaoX, posicaoY);
+                dilatar(vazia, tipo, posicaoX, posicaoY);
                 return;
             }
         }
@@ -310,18 +180,18 @@ void maskDil(Mascara tipo, Coluna * original, Coluna * quadro, int posicaoX, int
 Imagem dilatacao(Imagem imgI, char tipo)
 {
     Imagem img;
-    img = canvas(imgI);
+    img = apagar(imgI);
     Mascara mask;
 
     mask = construirMask(tipo);
 
     int i, j;
 
-    for(i = 0; i < imgI.h - tamMask; i++)
+    for(i = 0; i < imgI.l - tamMask; i++)
     {
-        for(j = 0; j < imgI.l - tamMask; j++)
+        for(j = 0; j < imgI.h - tamMask; j++)
         {
-            maskDil(mask, imgI.coluna, img.coluna, i, j);
+            maskDil(mask, imgI.linha, img.linha, i, j);
         }
     }
 
@@ -330,20 +200,20 @@ Imagem dilatacao(Imagem imgI, char tipo)
     return img;
 }
 
-void erodir(Coluna * coluna, Mascara tipo, int posicaoX, int posicaoY)
+void erodir(Linha * linha, Mascara tipo, int posicaoX, int posicaoY)
 {
     int i, j;
     for (i = 0; i < tamMask; i++)
     {
         for(j = 0; j < tamMask; j++)
         {
-            if(tipo.coluna[i].linha[j] == 1)
-            coluna[posicaoX + i].linha[posicaoY + j] = 0;
+            if(tipo.linha[i].coluna[j] == 1)
+            linha[posicaoX + i].coluna[posicaoY + j] = 0;
         }
     }
 }
 
-void maskEro(Mascara tipo, Coluna * original, Coluna * quadro, int posicaoX, int posicaoY)
+void maskEro(Mascara tipo, Linha * original, Linha * copia, int posicaoX, int posicaoY)
 {
     int i, j;
 
@@ -351,9 +221,9 @@ void maskEro(Mascara tipo, Coluna * original, Coluna * quadro, int posicaoX, int
     {
         for (j = 0; j < tamMask; j++)
         {
-            if(original[posicaoX + i].linha[posicaoY + j] - tipo.coluna[i].linha[j] < 0) 
+            if(original[posicaoX + i].coluna[posicaoY + j] - tipo.linha[i].coluna[j] < 0) 
             {
-                erodir(quadro, tipo, posicaoX, posicaoY);
+                erodir(copia, tipo, posicaoX, posicaoY);
                 return;
             }
         }
@@ -370,11 +240,11 @@ Imagem erosao(Imagem imgI, char tipo)
 
     int i, j;
 
-    for(i = 0; i < imgI.h - tamMask; i++)
+    for(i = 0; i < imgI.l - tamMask; i++)
     {
-        for(j = 0; j < imgI.l - tamMask; j++)
+        for(j = 0; j < imgI.h - tamMask; j++)
         {
-            maskEro(mask, imgI.coluna, img.coluna, i, j);
+            maskEro(mask, imgI.linha, img.linha, i, j);
         }
     }
 
