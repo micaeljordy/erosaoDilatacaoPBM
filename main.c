@@ -13,7 +13,7 @@ int main()
     Imagem img;
 
     img = abertura(imgI);
-    img = fechamento(imgI);
+    img = fechamento(img);
 
     salvarPBM(img);
 
