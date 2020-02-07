@@ -14,7 +14,7 @@ void iniciarMask(Mascara * mask, char tipo, Linha * linha)
 
 void abrirMask(Mascara * mask)
 {
-    char nome[11] = "mask.txt";
+    char nome[] = "mask.txt";
 
     FILE * arq;
     arq = fopen(nome, "r");
@@ -236,7 +236,7 @@ Mascara refletirMask(char tipo)
 FILE * novoArquivoRelatorio()
 {
     FILE * arq;
-    char nome[] = "rel.txt";
+    char nome[11] = "rel.txt";
 
     arq = fopen(nome, "r");
 
@@ -393,20 +393,24 @@ Imagem erosao(Imagem imgI, char tipo)
 
 Imagem abertura(Imagem imgI, char tipo)
 {
-    Imagem img;
+    Imagem img, aux;
 
     img = erosao(imgI, tipo);
+    aux = img;
     img = dilatacao(img, tipo);
+    apagarImagem(&aux);
 
     return img;
 }
 
 Imagem fechamento(Imagem imgI, char tipo)
 {
-    Imagem img;
+    Imagem img, aux;
 
     img = dilatacao(imgI, tipo);
+    aux = img;
     img = erosao(img, tipo);
+    apagarImagem(&aux);
 
     return img;
 }
