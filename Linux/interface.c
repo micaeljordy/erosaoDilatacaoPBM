@@ -136,9 +136,17 @@ void iniciarInterface()
             break;
 
         case 'o':
-            img = abrirArquivo();
-            anterior = copiarImagem(img);
-            anteanterior = copiarImagem(img);
+            if(img.linha != NULL)
+            {
+                apagarImagem(&img);
+                img = abrirArquivo();
+            }
+            else
+            {
+                img = abrirArquivo();
+                anterior = copiarImagem(img);
+                anteanterior = copiarImagem(img);
+            }
             break;
 
         case 's':
