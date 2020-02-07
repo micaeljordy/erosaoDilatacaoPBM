@@ -393,20 +393,24 @@ Imagem erosao(Imagem imgI, char tipo)
 
 Imagem abertura(Imagem imgI, char tipo)
 {
-    Imagem img;
+    Imagem img, aux;
 
     img = erosao(imgI, tipo);
+    aux = img;
     img = dilatacao(img, tipo);
+    apagarImagem(&aux);
 
     return img;
 }
 
 Imagem fechamento(Imagem imgI, char tipo)
 {
-    Imagem img;
+    Imagem img, aux;
 
     img = dilatacao(imgI, tipo);
+    aux = img;
     img = erosao(img, tipo);
+    apagarImagem(&aux);
 
     return img;
 }
