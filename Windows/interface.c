@@ -87,7 +87,7 @@ void iniciarInterface()
                 img = dilatacao(anterior, selecionarMask());
             }
             else printf("Nenhum arquivo foi aberto!");
-
+            getchar();
             break;
 
         case 'e':
@@ -102,7 +102,7 @@ void iniciarInterface()
                 img = erosao(anterior, selecionarMask());
             }
             else printf("Nenhum arquivo foi aberto!");
-
+            getchar();
             break;
 
         case 'a':
@@ -117,7 +117,7 @@ void iniciarInterface()
                 img = abertura(anterior, selecionarMask());
             }
             else printf("Nenhum arquivo foi aberto!");
-
+            getchar();
             break;
 
         case 'f':
@@ -132,7 +132,7 @@ void iniciarInterface()
                 img = fechamento(anterior, selecionarMask());
             }
             else printf("Nenhum arquivo foi aberto!");
-            
+            getchar(); 
             break;
 
         case 'o':
@@ -142,9 +142,14 @@ void iniciarInterface()
             break;
 
         case 's':
-            salvarPBM(img);
+            if(img.linha != NULL)
+            {
+                salvarPBM(img);
+            }
+            else printf("Nenhum arquivo foi aberto!");
+            getchar();
             break;
-
+                
         case 'q':
             chave = '0';
             break;
@@ -154,7 +159,6 @@ void iniciarInterface()
             img = copiarImagem(anterior);
             apagarImagem(&anterior);
             anterior = anteanterior;
-
             break;
 
         default:
