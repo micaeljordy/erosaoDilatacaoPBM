@@ -14,7 +14,7 @@ void iniciarMask(Mascara * mask, char tipo, Linha * linha)
 
 void abrirMask(Mascara * mask)
 {
-    char nome[] = "mask.txt";
+    char nome[11] = "mask.txt";
 
     FILE * arq;
     arq = fopen(nome, "r");
