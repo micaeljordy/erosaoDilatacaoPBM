@@ -1,4 +1,4 @@
-#include "headers\interface.h"
+#include "headers/interface.h"
 
 void limparTela()
 {
@@ -7,7 +7,7 @@ void limparTela()
 
 char menuOperacoes()
 {
-    printf("Selecione a operação:\n");
+    printf("Selecione a operacao:\n");
     printf("Dilatacao: d\n");
     printf("Erosao: e\n");
     printf("Abertura: a\n");

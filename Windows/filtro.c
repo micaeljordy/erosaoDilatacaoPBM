@@ -1,4 +1,4 @@
-#include "headers\filtro.h"
+#include "headers/filtro.h"
 
 typedef struct mascara
 {
@@ -236,7 +236,7 @@ Mascara refletirMask(char tipo)
 FILE * novoArquivoRelatorio()
 {
     FILE * arq;
-    char nome[] = "rel.txt";
+    char nome[11] = "rel.txt";
 
     arq = fopen(nome, "r");
 

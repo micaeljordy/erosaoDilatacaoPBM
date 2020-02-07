@@ -1,4 +1,4 @@
-#include "..\filtro.c"
+#include "../filtro.c"
 
 void limparTela(); // limpa o prompt/terminal
 

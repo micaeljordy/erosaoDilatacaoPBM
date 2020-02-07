@@ -1,4 +1,4 @@
-#include "..\imagem.c"
+#include "../imagem.c"
 #define tamMask 3 //tamanho das linhas e colunas da matriz da mascara
 
 //constantes char das mascaras

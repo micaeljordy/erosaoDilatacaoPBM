@@ -1,4 +1,4 @@
-#include "headers\imagem.h"
+#include "headers/imagem.h"
 
 typedef struct linha
 {
@@ -175,7 +175,7 @@ void limpar(char * str)
 FILE * novoArquivoPBM()
 {
     FILE * arq;
-    char nome[] = "img.pbm";
+    char nome[11] = "img.pbm";
 
     arq = fopen(nome, "r");
 
@@ -207,7 +207,7 @@ FILE * novoArquivoPBM()
 FILE * novoArquivoPGM()
 {
     FILE * arq;
-    char nome[] = "img.pgm";
+    char nome[11] = "img.pgm";
 
     arq = fopen(nome, "r");
 
