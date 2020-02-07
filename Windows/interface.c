@@ -48,6 +48,7 @@ char selecionarMask()
     printf("Cruz, intersecao vertical e horizontal: c\n");
     printf("Vertical: v\n");
     printf("Horizontal: h\n");
+    printf("Diagonal: d\n");
     printf("Nordeste: 1\n");
     printf("Noroeste: 2\n");
     printf("Sudeste: 3\n");
