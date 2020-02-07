@@ -61,6 +61,13 @@ char selecionarMask()
     return mask;
 }
 
+void aviso1()
+{
+    printf("Nenhum arquivo foi aberto!");
+    getchar();
+    getchar();
+}
+
 void iniciarInterface()
 {
     char chave = '1';
@@ -68,6 +75,10 @@ void iniciarInterface()
     primeiraIni(&img);
     primeiraIni(&anterior);
     primeiraIni(&anteanterior);
+
+    img = abrirArquivo();
+    anterior = copiarImagem(img);
+    anteanterior = copiarImagem(img);
 
     do
     {
@@ -86,8 +97,7 @@ void iniciarInterface()
                 apagarImagem(&img);
                 img = dilatacao(anterior, selecionarMask());
             }
-            else printf("Nenhum arquivo foi aberto!");
-            getchar();
+            else aviso1();
             break;
 
         case 'e':
@@ -101,8 +111,7 @@ void iniciarInterface()
                 apagarImagem(&img);
                 img = erosao(anterior, selecionarMask());
             }
-            else printf("Nenhum arquivo foi aberto!");
-            getchar();
+            else aviso1();
             break;
 
         case 'a':
@@ -116,8 +125,7 @@ void iniciarInterface()
                 apagarImagem(&img);
                 img = abertura(anterior, selecionarMask());
             }
-            else printf("Nenhum arquivo foi aberto!");
-            getchar();
+            else aviso1();
             break;
 
         case 'f':
@@ -131,22 +139,13 @@ void iniciarInterface()
                 apagarImagem(&img);;
                 img = fechamento(anterior, selecionarMask());
             }
-            else printf("Nenhum arquivo foi aberto!");
-            getchar(); 
+            else aviso1();
             break;
 
         case 'o':
-            if(img.linha != NULL)
-            {
-                apagarImagem(&img);
-                img = abrirArquivo();
-            }
-            else
-            {
-                img = abrirArquivo();
-                anterior = copiarImagem(img);
-                anteanterior = copiarImagem(img);
-            }
+            
+            apagarImagem(&img);
+            img = abrirArquivo();   
             break;
 
         case 's':
@@ -154,8 +153,7 @@ void iniciarInterface()
             {
                 salvarPBM(img);
             }
-            else printf("Nenhum arquivo foi aberto!");
-            getchar();
+            else aviso1();
             break;
                 
         case 'q':
@@ -171,6 +169,7 @@ void iniciarInterface()
 
         default:
             printf("Comando Invalido!\n");
+            getchar();
             getchar();
             break;
         }
