@@ -126,6 +126,8 @@ Imagem abrir(char nome[])
 {
     FILE * arq;
     Imagem img;
+    primeiraIni(&img);
+    
     arq = fopen(nome, "r");
 
     if(arq != NULL)
