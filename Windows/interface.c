@@ -8,14 +8,14 @@ void limparTela()
 char menuOperacoes()
 {
     printf("Selecione a operacao:\n");
-    printf("Dilatacao: d\n");
-    printf("Erosao: e\n");
-    printf("Abertura: a\n");
-    printf("Fechamento: f\n");
-    printf("Salvar: s\n");
-    printf("Abrir arquivo: o\n");
+    printf("Dilatacao:       d\n");
+    printf("Erosao:          e\n");
+    printf("Abertura:        a\n");
+    printf("Fechamento:      f\n");
+    printf("Salvar:          s\n");
+    printf("Abrir arquivo:   o\n");
     printf("Retornar Imagem: r\n");
-    printf("Sair: q\n");
+    printf("Sair:            q\n");
 
     char operacao;
     scanf(" %c", &operacao);
@@ -41,18 +41,18 @@ Imagem abrirArquivo()
 char selecionarMask()
 {
     printf("Selecione a mascara utilizada:\n");
-    printf("Norte, cima: n\n");
-    printf("Sul, baixo: s\n");
-    printf("Leste, direita: l\n");
-    printf("Oeste, esquerda: e\n");
-    printf("Cruz, intersecao vertical e horizontal: c\n");
-    printf("Vertical: v\n");
-    printf("Horizontal: h\n");
-    printf("Diagonal: d\n");
-    printf("Nordeste: 1\n");
-    printf("Noroeste: 2\n");
-    printf("Sudeste: 3\n");
-    printf("Sudoeste: 4\n");
+    printf("Norte, cima: *************************************************************************************** n\n");
+    printf("Sul, baixo: **************************************************************************************** s\n");
+    printf("Leste, direita: ************************************************************************************ l\n");
+    printf("Oeste, esquerda: *********************************************************************************** e\n");
+    printf("Cruz, intersecao vertical e horizontal: ************************************************************ c\n");
+    printf("Vertical: ****************************************************************************************** v\n");
+    printf("Horizontal: **************************************************************************************** h\n");
+    printf("Diagonal: ****************************************************************************************** d\n");
+    printf("Nordeste: ****************************************************************************************** 1\n");
+    printf("Noroeste: ****************************************************************************************** 2\n");
+    printf("Sudeste:  ****************************************************************************************** 3\n");
+    printf("Sudoeste: ****************************************************************************************** 4\n");
     printf("Personalizada (necessita do arquivo mask.txt preenchido com uma matriz 3x3 na pasta do executavel!): p\n");
 
     char mask;
