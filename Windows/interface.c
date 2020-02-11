@@ -155,6 +155,7 @@ void iniciarInterface()
                 anterior = copiarImagem(img);
                 anteanterior = copiarImagem(img);
             }
+            break;
 
         case 's':
             if(img.linha != NULL)
